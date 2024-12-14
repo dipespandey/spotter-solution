@@ -16,7 +16,6 @@ class GreedyRouteOptimizer(RouteOptimizer):
         self.max_range_miles = max_range_miles  # Maximum range in miles
         self.mpg = mpg  # Miles per gallon
         self.max_tank_gallons = max_range_miles / mpg  # Full tank capacity in gallons
-        # self.low_fuel_threshold = 0.25 * self.max_range_miles  # 25% of the max range
 
     def calculate_distance(self, point1: tuple[float, float], point2: tuple[float, float]) -> float:
         """Calculate haversine distance between two latitude/longitude points."""
@@ -109,12 +108,6 @@ class GreedyRouteOptimizer(RouteOptimizer):
 
                 # After refueling, reset fuel range
                 current_fuel_range = self.max_range_miles
-                # refuel_attempts += 1
-
-                # # If repeated refueling attempts fail to move forward:
-                # if refuel_attempts > max_refuel_attempts:
-                #     logger.error("No stations can be reached to refuel. Stuck without fuel.")
-                #     raise Exception("No stations can be reached to refuel. Stuck without fuel.")
 
                 stops.append(chosen_station)
                 new_route_points.append({
